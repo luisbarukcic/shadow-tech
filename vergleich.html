@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SHADOW TECH | Produktvergleich</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#0b0b0e;color:#f5f5f7;font-family:Arial,sans-serif}
+header{padding:22px 8%;display:flex;justify-content:space-between;align-items:center;background:#151519;border-bottom:1px solid #333}
+.logo{font-size:25px;font-weight:bold}
+.logo span{color:#ff304f}
+a{color:white;text-decoration:none}
+nav{display:flex;gap:22px}
+main{max-width:1100px;margin:55px auto;padding:20px}
+h1{font-size:42px}
+h1 span{color:#ff304f}
+.intro{color:#aaa;line-height:1.6}
+.filters{display:flex;gap:12px;flex-wrap:wrap;margin:30px 0}
+button,select{padding:12px 18px;border:1px solid #444;border-radius:9px;background:#19191f;color:white;cursor:pointer}
+button.active,button:hover{background:#ff304f;border-color:#ff304f}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
+.card{background:#17171d;border:1px solid #333;border-radius:15px;padding:22px;transition:.2s}
+.card:hover{border-color:#ff304f;transform:translateY(-4px)}
+.symbol{height:110px;display:grid;place-items:center;font-size:55px;background:#22202a;border-radius:12px;margin-bottom:18px}
+.card h2{font-size:20px}
+.price{color:#ff526b;font-size:23px;font-weight:bold}
+.card p{color:#bbb;line-height:1.6}
+.tag{color:#aaa;font-size:12px}
+footer{text-align:center;padding:35px;color:#888;border-top:1px solid #333;margin-top:70px}
+@media(max-width:600px){header{align-items:flex-start;gap:15px;flex-direction:column}nav{flex-wrap:wrap}h1{font-size:32px}}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">SHADOW<span>TECH</span></div>
+<nav>
+<a href="index.html">Startseite</a>
+<a href="vergleich.html">Vergleich</a>
+</nav>
+</header>
+<main>
+<p class="tag">GAMING • TECHNIK • VERGLEICH</p>
+<h1>Finde deine <span>Gaming-Ausrüstung.</span></h1>
+<p class="intro">Vergleiche Gaming-Produkte und entdecke, welche Ausstattung zu deinem Setup passt.</p>
+
+<div class="filters">
+<button class="active" onclick="filter('Alle',this)">Alle</button>
+<button onclick="filter('Maus',this)">Mäuse</button>
+<button onclick="filter('Tastatur',this)">Tastaturen</button>
+<button onclick="filter('Headset',this)">Headsets</button>
+<button onclick="filter('Monitor',this)">Monitore</button>
+</div>
+
+<div class="grid" id="products">
+<div class="card" data-type="Maus">
+<div class="symbol">🖱️</div>
+<h2>Gaming-Maus Pro</h2>
+<p>Leicht, präzise und für schnelle Reaktionen entwickelt.</p>
+<p class="price">49,99 €</p>
+<p class="tag">Kategorie: Maus</p>
+</div>
+<div class="card" data-type="Tastatur">
+<div class="symbol">⌨️</div>
+<h2>Mechanical Keyboard</h2>
+<p>Mechanische Tasten und kompakte Bauweise.</p>
+<p class="price">79,99 €</p>
+<p class="tag">Kategorie: Tastatur</p>
+</div>
+<div class="card" data-type="Headset">
+<div class="symbol">🎧</div>
+<h2>Gaming Headset</h2>
+<p>Komfort und klarer Sound beim Gaming.</p>
+<p class="price">59,99 €</p>
+<p class="tag">Kategorie: Headset</p>
+</div>
+<div class="card" data-type="Monitor">
+<div class="symbol">🖥️</div>
+<h2>Gaming Monitor</h2>
+<p>Flüssige Darstellung für dein Gaming-Setup.</p>
+<p class="price">199,99 €</p>
+<p class="tag">Kategorie: Monitor</p>
+</div>
+</div>
+<p class="intro">Hinweis: Die Produkte und Preise sind Demo-Beispiele und keine aktuellen Händlerangebote.</p>
+</main>
+<footer>© 2026 SHADOW TECH – Gaming & Technik</footer>
+<script>
+function filter(type,button){
+document.querySelectorAll('.filters button').forEach(b=>b.classList.remove('active'));
+button.classList.add('active');
+document.querySelectorAll('.card').forEach(card=>{
+card.style.display=(type==='Alle'||card.dataset.type===type)?'block':'none';
+});
+}
+</script>
+</body>
+</html>
