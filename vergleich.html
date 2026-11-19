@@ -1,99 +1,119 @@
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SHADOW TECH | Produktvergleich</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SHADOW TECH | Produkt-Duell</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#0b0b0e;color:#f5f5f7;font-family:Arial,sans-serif}
-header{padding:22px 8%;display:flex;justify-content:space-between;align-items:center;background:#151519;border-bottom:1px solid #333}
+body{margin:0;background:#0b0b0e;color:white;font-family:Arial,sans-serif}
+header{padding:22px 7%;background:#151519;border-bottom:1px solid #333;display:flex;justify-content:space-between}
 .logo{font-size:25px;font-weight:bold}
-.logo span{color:#ff304f}
+.logo span,h1 span{color:#ff304f}
 a{color:white;text-decoration:none}
-nav{display:flex;gap:22px}
-main{max-width:1100px;margin:55px auto;padding:20px}
-h1{font-size:42px}
-h1 span{color:#ff304f}
-.intro{color:#aaa;line-height:1.6}
-.filters{display:flex;gap:12px;flex-wrap:wrap;margin:30px 0}
-button,select{padding:12px 18px;border:1px solid #444;border-radius:9px;background:#19191f;color:white;cursor:pointer}
-button.active,button:hover{background:#ff304f;border-color:#ff304f}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
-.card{background:#17171d;border:1px solid #333;border-radius:15px;padding:22px;transition:.2s}
-.card:hover{border-color:#ff304f;transform:translateY(-4px)}
-.symbol{height:110px;display:grid;place-items:center;font-size:55px;background:#22202a;border-radius:12px;margin-bottom:18px}
-.card h2{font-size:20px}
-.price{color:#ff526b;font-size:23px;font-weight:bold}
-.card p{color:#bbb;line-height:1.6}
-.tag{color:#aaa;font-size:12px}
-footer{text-align:center;padding:35px;color:#888;border-top:1px solid #333;margin-top:70px}
-@media(max-width:600px){header{align-items:flex-start;gap:15px;flex-direction:column}nav{flex-wrap:wrap}h1{font-size:32px}}
+main{max-width:1050px;margin:55px auto;padding:20px}
+h1{font-size:38px}
+.sub{color:#aaa;line-height:1.6}
+.selects{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:35px 0}
+.panel{background:#19191f;border:1px solid #444;border-radius:15px;padding:22px}
+select{width:100%;padding:14px;background:#292932;color:white;border:1px solid #555;border-radius:8px;margin-top:12px}
+h2{font-size:21px}
+.compare{width:100%;border-collapse:collapse;margin-top:25px;background:#17171d;border-radius:12px;overflow:hidden}
+th,td{padding:17px 12px;text-align:center;border-bottom:1px solid #333}
+th{color:#ff526b}
+td:first-child{color:#aaa;text-align:left}
+.winner{margin-top:25px;padding:20px;background:#24151c;border:1px solid #ff304f;border-radius:12px;line-height:1.6}
+button{background:#ff304f;color:white;border:0;padding:13px 22px;border-radius:8px;cursor:pointer;font-weight:bold;margin-top:20px}
+footer{text-align:center;color:#888;padding:35px}
+@media(max-width:650px){.selects{grid-template-columns:1fr}h1{font-size:30px}th,td{padding:12px 5px;font-size:13px}}
 </style>
 </head>
 <body>
 <header>
 <div class="logo">SHADOW<span>TECH</span></div>
-<nav>
 <a href="index.html">Startseite</a>
-<a href="vergleich.html">Vergleich</a>
-</nav>
 </header>
+
 <main>
-<p class="tag">GAMING • TECHNIK • VERGLEICH</p>
-<h1>Finde deine <span>Gaming-Ausrüstung.</span></h1>
-<p class="intro">Vergleiche Gaming-Produkte und entdecke, welche Ausstattung zu deinem Setup passt.</p>
+<p style="color:#ff526b">SHADOW TECH EXCLUSIVE</p>
+<h1>Gaming-Maus <span>Duell.</span></h1>
+<p class="sub">Wähle zwei Mäuse und vergleiche ihre technischen Eigenschaften.</p>
 
-<div class="filters">
-<button class="active" onclick="filter('Alle',this)">Alle</button>
-<button onclick="filter('Maus',this)">Mäuse</button>
-<button onclick="filter('Tastatur',this)">Tastaturen</button>
-<button onclick="filter('Headset',this)">Headsets</button>
-<button onclick="filter('Monitor',this)">Monitore</button>
+<div class="selects">
+<div class="panel">
+<h2>🔴 Produkt 1</h2>
+<select id="one">
+<option value="logitech">Logitech G PRO X SUPERLIGHT 2</option>
+<option value="razer">Razer Viper V3 Pro</option>
+</select>
+</div>
+<div class="panel">
+<h2>🔵 Produkt 2</h2>
+<select id="two">
+<option value="razer">Razer Viper V3 Pro</option>
+<option value="logitech">Logitech G PRO X SUPERLIGHT 2</option>
+</select>
+</div>
 </div>
 
-<div class="grid" id="products">
-<div class="card" data-type="Maus">
-<div class="symbol">🖱️</div>
-<h2>Gaming-Maus Pro</h2>
-<p>Leicht, präzise und für schnelle Reaktionen entwickelt.</p>
-<p class="price">49,99 €</p>
-<p class="tag">Kategorie: Maus</p>
+<table class="compare">
+<thead><tr><th>Eigenschaft</th><th id="name1">Logitech</th><th id="name2">Razer</th></tr></thead>
+<tbody id="rows"></tbody>
+</table>
+
+<div class="winner" id="result">
+Wähle deine Produkte und starte den Vergleich!
 </div>
-<div class="card" data-type="Tastatur">
-<div class="symbol">⌨️</div>
-<h2>Mechanical Keyboard</h2>
-<p>Mechanische Tasten und kompakte Bauweise.</p>
-<p class="price">79,99 €</p>
-<p class="tag">Kategorie: Tastatur</p>
-</div>
-<div class="card" data-type="Headset">
-<div class="symbol">🎧</div>
-<h2>Gaming Headset</h2>
-<p>Komfort und klarer Sound beim Gaming.</p>
-<p class="price">59,99 €</p>
-<p class="tag">Kategorie: Headset</p>
-</div>
-<div class="card" data-type="Monitor">
-<div class="symbol">🖥️</div>
-<h2>Gaming Monitor</h2>
-<p>Flüssige Darstellung für dein Gaming-Setup.</p>
-<p class="price">199,99 €</p>
-<p class="tag">Kategorie: Monitor</p>
-</div>
-</div>
-<p class="intro">Hinweis: Die Produkte und Preise sind Demo-Beispiele und keine aktuellen Händlerangebote.</p>
+
+<button onclick="compare()">JETZT VERGLEICHEN</button>
+<p class="sub">Hinweis: Technische Herstellerangaben. Der Vergleich bewertet einzelne Eigenschaften und bestimmt nicht, welche Maus für jeden Spieler besser ist.</p>
 </main>
-<footer>© 2026 SHADOW TECH – Gaming & Technik</footer>
+
+<footer>© 2026 SHADOW TECH | Gaming & Technik</footer>
+
 <script>
-function filter(type,button){
-document.querySelectorAll('.filters button').forEach(b=>b.classList.remove('active'));
-button.classList.add('active');
-document.querySelectorAll('.card').forEach(card=>{
-card.style.display=(type==='Alle'||card.dataset.type===type)?'block':'none';
-});
+const products={
+logitech:{
+name:"Logitech G PRO X SUPERLIGHT 2",
+weight:60,dpi:44000,polling:8000,
+buttons:5,battery:95
+},
+razer:{
+name:"Razer Viper V3 Pro",
+weight:54,dpi:35000,polling:8000,
+buttons:6,battery:95
 }
+};
+
+function compare(){
+const a=products[document.getElementById("one").value];
+const b=products[document.getElementById("two").value];
+
+document.getElementById("name1").textContent=a.name;
+document.getElementById("name2").textContent=b.name;
+
+const specs=[
+["Gewicht",a.weight+" g",b.weight+" g",a.weight,b.weight,"lower"],
+["Max. DPI",a.dpi.toLocaleString("de-DE"),b.dpi.toLocaleString("de-DE"),a.dpi,b.dpi,"higher"],
+["Polling Rate",a.polling+" Hz",b.polling+" Hz",a.polling,b.polling,"higher"],
+["Tasten",a.buttons,b.buttons,a.buttons,b.buttons,"higher"],
+["Akku (Herstellerangabe)",a.battery+" Std.",b.battery+" Std.",a.battery,b.battery,"none"]
+];
+
+document.getElementById("rows").innerHTML=specs.map(s=>{
+let left="",right="";
+if(s[5]==="lower"||s[5]==="higher"){
+left=s[5]==="lower"?s[3]<s[4]:s[3]>s[4];
+right=s[3]!==s[4]&&!left;
+}
+return `<tr><td>${s[0]}</td><td style="color:${left?'#ff526b':'white'}">${s[1]}</td><td style="color:${right?'#ff526b':'white'}">${s[2]}</td></tr>`;
+}).join("");
+
+document.getElementById("result").textContent=
+a.name===b.name?"Du hast dasselbe Produkt zweimal ausgewählt.": 
+"Vergleich fertig! Die rot markierten Werte zeigen den jeweiligen Vorteil bei Gewicht oder technischen Kennzahlen. Welches Modell besser passt, hängt von deinen Anforderungen ab.";
+}
+compare();
 </script>
 </body>
 </html>
